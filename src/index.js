@@ -22,8 +22,7 @@ ReactDOM.render(
       <Route render={({location})=>(
         <AnimatePresence exitBeforeEnter >
           <Switch location={location} key={location.pathname}>
-              <Route path='/' exact component={Landing} />
-              <Route path='/my-portfolio' component={ Dashboard } />
+              <Route path='/' component={ Dashboard } />
           </Switch>
         </AnimatePresence>
       )} />
