@@ -66,7 +66,7 @@ export default function Dashboard() {
 
     return (
         <>
-            {showNav && <div style={{width:'100%', height:'3em', position:'fixed', top: window.innerHeight/2, right:window.innerWidth/2+150, zIndex:'1', display:'flex', alignItems:'center', justifyContent:'center'}}>
+            {showNav && showContent && <div style={{width:'100%', height:'3em', position:'fixed', top: window.innerHeight/2, right:window.innerWidth/2+150, zIndex:'1', display:'flex', alignItems:'center', justifyContent:'center'}}>
             {console.log(`dashboard ${scrollOffset}`)}
             <Navigator scrollOffset={scrollOffset}/>
             </div>}
