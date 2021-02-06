@@ -17,7 +17,6 @@ export default function ShortIntro({setShowContent}) {
         },
         transition:{
             duration:0.7,
-            delay:0.2
         },
     }
 

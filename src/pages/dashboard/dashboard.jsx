@@ -6,7 +6,8 @@ import ShortIntro from './ShortIntro'
 import Works from '../works/Works'
 import { scroller } from 'react-scroll'
 import ScrollContainer from './ScrollContainer'
-import Navigator from './Navigator'
+import Navigator from './navigator/Wheel'
+import Experience from '../experience/Experience'
 
 export default function Dashboard() {
 
@@ -15,28 +16,32 @@ export default function Dashboard() {
     const [showContent, setShowContent] = useState(false)
 
     const [showNav, setShowNav] = useState(false)
-
-    const [currPage, setCurrPage] = useState(0)
+    const [scrollOffset, setScrollOffset] = useState(0)
+    const [botCirc, setBotCirc] = useState(false)
 
     const initMotion = {
         initial: {
-            height:'100vh', width:'100vw', borderBottomRightRadius:'100%', backgroundColor:'#1f1f1f', overflow: 'hidden'
+            height:'100vh', width:'100vw', backgroundColor:'#1f1f1f', overflow: 'hidden', opacity: '0', transform: 'scaleY(0.01)'
         },
         animate:{
-            height: '400vh', width:'100vw', position:'absolute', backgroundColor:'#1f1f1f', borderBottomRightRadius:'0%', 
-            display: 'flex', flexDirection: 'column', alignItems:'center', opacity: '1', overflow:'hidden',
+            height: prepping ? '100vh' : '400vh', width:'100vw', position:'absolute', backgroundColor:'#1f1f1f',
+            display: 'flex', flexDirection: 'column', alignItems:'center', opacity: '1', overflow:'hidden', transform: 'scaleY(1)'
         },
         transition:{
-            duration: 1
+            duration: 1.5
         }
     }
 
+    // circleMotion
+
     setTimeout(() => {
+        if(prepping) setBotCirc(true)
         setPrepping(false)
-    }, 1000);
+    }, 1500);
 
     const displayContent = () => {
         setShowContent(true)
+        setBotCirc(false)
         window.scrollTo({
             top: window.innerHeight/2,
             behavior:'smooth',
@@ -45,26 +50,28 @@ export default function Dashboard() {
 
     useEffect(()=>{
         window.addEventListener('scroll', ()=>{
-            if(window.pageYOffset > 500){
+            setScrollOffset(window.pageYOffset)
+            if(window.pageYOffset > 450){
                 setShowNav(true)
-                const page = (3*window.pageYOffset/window.innerHeight)
-                setCurrPage(Math.round(page)-2)
+            }else if(window.pageYOffset == 0){
+                setBotCirc(true)
             }else{
                 setShowNav(false)
+                setBotCirc(false)
             }
         })
     },[])
 
+    
+
     return (
         <>
-            {
-                prepping && <video autoPlay muted loop className='bg-vid'>
-                <source src={bg_vid} type='video/mp4' ></source>
-                </video>
-            } 
-            {showNav && <div style={{width:'100%', height:'3em', position:'fixed', top: 0, zIndex:'1', display:'flex', alignItems:'center', justifyContent:'center',}}>
-                <Navigator page={currPage}/>
+            {showNav && <div style={{width:'100%', height:'3em', position:'fixed', top: window.innerHeight/2, right:window.innerWidth/2+150, zIndex:'1', display:'flex', alignItems:'center', justifyContent:'center'}}>
+            {console.log(`dashboard ${scrollOffset}`)}
+            <Navigator scrollOffset={scrollOffset}/>
             </div>}
+
+            {/* {botCirc &&  <div style={{width:'100%', height:'150px', position:'fixed', bottom: 0, zIndex:'1', display:'flex', alignItems:'center', justifyContent:'center', backgroundColor:'#00000055'}}></div>} */}
             <ScrollContainer scrollIntertia={50}>
                 <motion.div initial={initMotion.initial} animate={initMotion.animate} transition={initMotion.transition}>
                     {!prepping && <>
@@ -82,6 +89,7 @@ function Content(){
         <>
             <About/>
             <Works/>
+            <Experience/>
         </>
     )
 }

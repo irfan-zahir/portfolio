@@ -7,7 +7,7 @@ export default function About() {
 
     const containerStyle = {
         width: '95vw', height: window.innerHeight*0.95, position:'relative', 
-        marginTop:'25px', marginBottom:'25px'
+        marginTop:'25px', marginBottom:'25px', backgroundColor:'#13131355'
     }
 
     const xStyle = {
