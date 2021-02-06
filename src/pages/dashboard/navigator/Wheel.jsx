@@ -14,7 +14,7 @@ export class Navigator extends Component {
         }
 
         this.temp_theta = 0.0
-        this.pages = ['About', 'Works', 'Extras']
+        this.pages = ['about', 'works', 'extras']
     }
 
     render() {

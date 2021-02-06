@@ -17,11 +17,12 @@ import Dashboard from './pages/dashboard/dashboard';
 
 window.addEventListener('load', () => {
   LegendaryCursor.init({
-    lineSize: 0.025,
+    lineSize: 0.03,
     sparklesCount:    10,
-    opacityDecrement: 0.5,
+    opacityDecrement: 0.65,
+    speedExpFactor:   0.55,
     lineExpFactor:'1',
-    texture1: 'https://images.pexels.com/photos/1279813/pexels-photo-1279813.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'
+    texture1: 'https://images.pexels.com/photos/1317559/pexels-photo-1317559.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'
 
   })
 })
