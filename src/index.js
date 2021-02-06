@@ -8,11 +8,21 @@ import LegendaryCursor from "legendary-cursor";
 import { AnimatePresence } from 'framer-motion';
 import Dashboard from './pages/dashboard/dashboard';
 
+// lineSize:         0.15,
+// opacityDecrement: 0.55,
+// speedExpFactor:   0.8,
+// lineExpFactor:    0.6,
+// sparklesCount:    65,
+// maxOpacity:       0.99,
+
 window.addEventListener('load', () => {
   LegendaryCursor.init({
-    lineSize: 0.015,
-    sparklesCount:    30,
-    opacityDecrement: 0.75,
+    lineSize: 0.025,
+    sparklesCount:    10,
+    opacityDecrement: 0.5,
+    lineExpFactor:'1',
+    texture1: 'https://images.pexels.com/photos/1279813/pexels-photo-1279813.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'
+
   })
 })
 
