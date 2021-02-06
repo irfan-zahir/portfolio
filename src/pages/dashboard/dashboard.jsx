@@ -51,7 +51,7 @@ export default function Dashboard() {
     useEffect(()=>{
         window.addEventListener('scroll', ()=>{
             setScrollOffset(window.pageYOffset)
-            if(window.pageYOffset > 450){
+            if(window.pageYOffset > 300){
                 setShowNav(true)
             }else if(window.pageYOffset == 0){
                 setBotCirc(true)
